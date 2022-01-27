@@ -116,7 +116,7 @@ def page_explore():
 	if comps_button:
 		make_line()
 		st.markdown("**Operating Comps**")
-		comp_data = nearby_comps_str(star,radius=radius)
+		comp_data = nearby_comps_str(star,radius=radius[1])
 		st.dataframe(comp_data.loc[(comp_data['Rooms'].between(rooms[0],rooms[1]))])
 			
 
