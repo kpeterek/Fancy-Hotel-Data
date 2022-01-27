@@ -107,7 +107,7 @@ def page_explore():
 	if radius_option == '7mile search radius':
 		radius = 7.0
 	if radius_option == 'Custom Slider':
-		radius = st.slider('Select radius',0.0,6.0,(0.0,3.0)
+		radius = st.slider('Select radius',0.0,6.0,(0.0,3.0))
 	if radius_option == 'Manual Input':
 		radius = st.number_intput(label='Enter Radius (MI): ',value=15.0)
 	rooms = st.sidebar.slider('Select room range',10,1000,(50, 120))
