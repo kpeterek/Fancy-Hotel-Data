@@ -40,10 +40,10 @@ def page_explore():
 		st_filter = st.sidebar.selectbox('Filter by?', ['radius','tract','city'])
 		radius = st.sidebar.text_input('Radius?')
 		if radius.isnumeric():
-		pass
+			pass
 		else:
-		radius = 0.0
-		submit = st.sidebar.button('run new supply')
+			radius = 0.0
+			submit = st.sidebar.button('run new supply')
 
 
 
