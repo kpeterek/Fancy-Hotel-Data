@@ -28,18 +28,17 @@ def page_explore():
 				return st.sidebar.beta_expander(expander_name)
 
 	st.sidebar.subheader("To explore:")
-	with make_expanders("Select Hotel"):
+	#with make_expanders("Select Hotel"):
 
 
-		# Distribution names
-		hotel = st.sidebar.selectbox('Select Hotel',name_str['Hotel Name'])
-		star = int(name_str[name_str['Hotel Name'] == hotel]['STR Number'].item())
-		st.sidebar.write(hotel, ' has the StarID of ',name_str[name_str['Hotel Name'] == hotel]['STR Number'].item())
-		st.markdown("**Parameters**")
-		submit = st.sidebar.button('Pull Hotel Information')
-		if submit:
-			data = str_census[str_census['STR Number'] == star]
-			st.write(data)
+	hotel = st.sidebar.selectbox('Select Hotel',name_str['Hotel Name'])
+	star = int(name_str[name_str['Hotel Name'] == hotel]['STR Number'].item())
+	st.sidebar.write(hotel, ' has the StarID of ',name_str[name_str['Hotel Name'] == hotel]['STR Number'].item())
+	st.markdown("**Parameters**")
+	submit = st.sidebar.button('Pull Hotel Information')
+	if submit:
+		data = str_census[str_census['STR Number'] == star]
+		st.write(data)
 			
 
 
