@@ -35,7 +35,7 @@ def main():
 
     pages = {
         "Introduction": page_introduction,
-        "Find Hotels": page_lookup,
+        "Find Hotels": page_explore,
         "Import Star Data": page_str,
         "New Supply": page_ns
     }
