@@ -14,9 +14,9 @@ def page_explore():
     exploration of the continuous distributions that are available in SciPy.
     """
     cols_needed = ['Title','Address','City','State','PostalCode','Units','Open Date','Phase','Latitude','Longitude','distance','sort']
-	cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','Latitude','Longitude','distance']
-	str_census = pd.read_csv('str_census_small.csv')
-	str_pipeline = pd.read_csv('pipeline.csv')
+    cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','Latitude','Longitude','distance']
+    str_census = pd.read_csv('str_census_small.csv')
+    str_pipeline = pd.read_csv('pipeline.csv')
     
     def make_expanders(expander_name, sidebar=True):
         """ Set up expanders which contains a set of options. """
