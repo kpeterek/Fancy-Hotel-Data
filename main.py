@@ -15,7 +15,7 @@ st.set_page_config(page_title='HotelAnalyzer')
 
 logo, name = st.sidebar.columns(2)
 with logo:
-    image = 
+    image = "moniker_white.png"
     st.image(image, use_column_width=True)
 with name:
     st.markdown("<h1 style='text-align: left; color: grey;'> \
