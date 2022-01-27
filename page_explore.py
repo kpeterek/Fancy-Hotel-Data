@@ -73,20 +73,20 @@ def page_explore():
 
 		    # Doing try and except which will allow slider stepping
 		    # interval to be changed in the advanced mode.
-		    try:
-			if radius == 'Custom Slider':
-			    step_value = 0.10
-			    slider_i = sliders()
-			    sliders_params.append(slider_i)
+			try:
+				if radius == 'Custom Slider':
+					step_value = 0.10
+					slider_i = sliders()
+					sliders_params.append(slider_i)
 
-			if radius == 'Manually Input':
-			    manual = float(st.text_input('Default value: '+'{}'.format(param)+' = '+f'{parameter_value}', float("{:.2f}".format(parameter_value))))
-			    sliders_params.append(manual)
-		    except:
-			step_value = 0.10
-			slider_i = sliders()  
-			sliders_params.append(slider_i)
-		return sliders_params
+				if radius == 'Manually Input':
+					manual = float(st.text_input('Default value: '+'{}'.format(param)+' = '+f'{parameter_value}', float("{:.2f}".format(parameter_value))))
+					sliders_params.append(manual)
+			except:
+				step_value = 0.10
+				slider_i = sliders()  
+				sliders_params.append(slider_i)
+			return sliders_params
 	sliders_params = obtain_functional_data()
 	comps_button = st.sidebar.button('Pull Hotel Comps')
 	
