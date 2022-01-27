@@ -13,7 +13,7 @@ import more_itertools
 from itertools import permutations
 import math
 
-@st.cache()
+
 def page_explore():
 	""" 
 	The first page in this app made with Streamlit is for an interactive 
@@ -44,7 +44,7 @@ def page_explore():
 	st.sidebar.subheader("To explore:")
 	#with make_expanders("Select Hotel"):
 
-
+	@st.cache(suppress_st_warning=True)
 	hotel = st.sidebar.selectbox('Select Hotel',name_str['Hotel Name'])
 	st.sidebar.write(hotel, ' has the StarID of ',name_str[name_str['Hotel Name'] == hotel]['STR Number'].item())
 	star = st.sidebar.number_input(label='Enter Star ID',value=63037)
@@ -54,6 +54,7 @@ def page_explore():
 	st.dataframe(data)
 	radius = st.sidebar.radio("Options", ('7mile search radius', 'Custom Slider','Manual Input')) 
 	
+	@st.cache(suppress_st_warning=True)
 	def nearby_comps_str(STR,radius=7):
 		R = 3958.756
 		prop_name = str_census['Hotel Name'][str_census['STR Number'] == STR].iloc[:,].item()
@@ -105,6 +106,7 @@ def page_explore():
 	sliders_params = obtain_functional_data()
 	comps_button = st.sidebar.button('Pull Hotel Comps')
 	if comps_button:
+		@st.cache(suppress_st_warning=True)
 		make_line()
 		st.markdown("**Operating Comps**")
 		rooms = values = st.slider('Select room range',1.0,1000.0,(50.0, 120.0))
