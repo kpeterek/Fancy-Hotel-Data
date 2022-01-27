@@ -36,7 +36,7 @@ def page_explore():
 	star = st.sidebar.text_input('Enter Star ID')
 	st.markdown("**Parameters**")	
 	submit = st.sidebar.button('Pull Hotel Information')
-	data = str_census[str_census['STR Number'] == int(star)].T
+	data = str_census[str_census['STR Number'] == int(star)]
 	st.dataframe(data)
 			
 
