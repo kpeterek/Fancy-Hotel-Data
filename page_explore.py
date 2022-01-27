@@ -14,8 +14,6 @@ def page_explore():
     exploration of the continuous distributions that are available in SciPy.
     """
     
-    name_docstring_dict, name_eq_dict, name_proper_dict, \
-        all_dist_params_dict, name_url_dict = creating_dictionaries()
     
     def make_expanders(expander_name, sidebar=True):
         """ Set up expanders which contains a set of options. """
