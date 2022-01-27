@@ -3,6 +3,8 @@ import streamlit as st
 # Add pages -- see those files for deatils within
 from page_explore import page_explore
 from page_introduction import page_introduction
+from page_str import page_str
+from page_ns import page_ns
 
 # Use random seed
 import numpy as np
