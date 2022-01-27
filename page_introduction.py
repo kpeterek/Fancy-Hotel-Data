@@ -37,7 +37,11 @@ def page_introduction():
 
         return line    
 
-"""
+    return
+
+
+'''
+
     # Images and brief explanations.
     st.error('Explore distributions')
     feature1, feature2 = st.columns([0.5,0.4])
@@ -120,6 +124,4 @@ def page_introduction():
     
     st.info('There are 100 continuous distribution functions  \
                 from **SciPy v1.6.1** available to play with.')
-"""        
-    
-    return
+                '''
