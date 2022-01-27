@@ -5,3 +5,15 @@ numpy >= 1.18.5
 scipy >= 1.6.1
 cmasher >= 1.5.10
 bokeh == 2.2.2
+geopy >=2.0.0
+geopandas >=0.8.1
+pydeck==0.6.1
+openpyxl
+xlrd
+seaborn
+pickle5 
+beautifulsoup4 >=4.9.0
+requests
+regex
+more-itertools
+plotly >= 5.5.0
