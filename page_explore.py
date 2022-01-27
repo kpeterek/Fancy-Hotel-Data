@@ -52,7 +52,7 @@ def page_explore():
 	submit = st.sidebar.button('Pull Hotel Information')
 	data = str_census[str_census['STR Number'] == int(star)]
 	st.dataframe(data)
-	radius = st.sidebar.radio("Options", ('7mile search radius', 'Custom Slider','Manual Input')) 
+	radius_option = st.sidebar.radio("Options", ('7mile search radius', 'Custom Slider','Manual Input')) 
 	
 
 	def nearby_comps_str(STR,radius=7):
@@ -104,6 +104,12 @@ def page_explore():
 				sliders_params.append(slider_i)
 			return sliders_params
 	sliders_params = obtain_functional_data()
+	if radius_option == '7mile search radius':
+		radius = 7.0
+	if radius_option == 'Custom Slider':
+		radius = st.slider('Select radius',0.0,6.0,(0.0,3.0)
+	if radius_option == 'Manual Input':
+		radius = st.number_intput(label='Enter Radius (MI): ',value=15.0)
 	rooms = st.sidebar.slider('Select room range',10,1000,(50, 120))
 	comps_button = st.sidebar.button('Pull Hotel Comps')
 	
