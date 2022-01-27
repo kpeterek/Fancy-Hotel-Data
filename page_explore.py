@@ -38,7 +38,7 @@ def page_explore():
 	submit = st.sidebar.button('Pull Hotel Information')
 	if submit:
 		data = str_census[str_census['STR Number'] == star]
-		st.Table(data)
+		st.dataframe(data.T)
 			
 
 
