@@ -54,37 +54,40 @@ def page_explore():
 
 	radius = st.radio("Options", ('7mile search radius', 'Custom Slider','Manual Input'))  
 		
-	def sliders():
-		"""
-		Function that defines a slider. It's going to be
-		initiated with the default value as defined in SciPy.
-		Slider min value of 0.01; max value of 10 - are added
-		arbitrary.
-		"""
+	def obtain_functional_data():
+		def sliders():
+			"""
+			Function that defines a slider. It's going to be
+			initiated with the default value as defined in SciPy.
+			Slider min value of 0.01; max value of 10 - are added
+			arbitrary.
+			"""
 
-		slider_i = st.slider('Default value: '+'{}'.format(param)+' = '+f'{parameter_value}',
-			   min_value = min_param_value,
-			   value = float("{:.2f}".format(parameter_value)),
-			   max_value = 1000.00,
-			   step = step_value)
+			slider_i = st.slider('Default value: '+'{}'.format(param)+' = '+f'{parameter_value}',
+				   min_value = min_param_value,
+				   value = float("{:.2f}".format(parameter_value)),
+				   max_value = 1000.00,
+				   step = step_value)
 
-		return slider_i
+			return slider_i
 
-	    # Doing try and except which will allow slider stepping
-	    # interval to be changed in the advanced mode.
-	    try:
-		if radius == 'Custom Slider':
-		    step_value = 0.10
-		    slider_i = sliders()
-		    sliders_params.append(slider_i)
+		    # Doing try and except which will allow slider stepping
+		    # interval to be changed in the advanced mode.
+		    try:
+			if radius == 'Custom Slider':
+			    step_value = 0.10
+			    slider_i = sliders()
+			    sliders_params.append(slider_i)
 
-		if radius == 'Manually Input':
-		    manual = float(st.text_input('Default value: '+'{}'.format(param)+' = '+f'{parameter_value}', float("{:.2f}".format(parameter_value))))
-		    sliders_params.append(manual)
-	    except:
-		step_value = 0.10
-		slider_i = sliders()  
-		sliders_params.append(slider_i)
+			if radius == 'Manually Input':
+			    manual = float(st.text_input('Default value: '+'{}'.format(param)+' = '+f'{parameter_value}', float("{:.2f}".format(parameter_value))))
+			    sliders_params.append(manual)
+		    except:
+			step_value = 0.10
+			slider_i = sliders()  
+			sliders_params.append(slider_i)
+		return sliders_params
+	sliders_params = obtain_functional_data()
 	comps_button = st.sidebar.button('Pull Hotel Comps')
 	
 	
