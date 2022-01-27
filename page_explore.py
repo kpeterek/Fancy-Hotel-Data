@@ -38,6 +38,56 @@ def page_explore():
 	submit = st.sidebar.button('Pull Hotel Information')
 	data = str_census[str_census['STR Number'] == int(star)]
 	st.dataframe(data)
+	
+	def nearby_comps_str(STR,radius=7):
+		R = 3958.756
+		prop_name = str_census['Hotel Name'][str_census['STR Number'] == STR].iloc[:,].item()
+		prop_city = str_census['City'][str_census['STR Number'] == STR].iloc[:,].item()
+		coords_subj = str(str_census.iloc[:,27][str_census['STR Number'] == STR].iloc[:,].item()),str(str_census.iloc[:,28][str_census['STR Number'] == STR].iloc[:,].item())
+		lat_min,lat_max = math.degrees(math.radians(float(coords_subj[0]))-radius/R),math.degrees(math.radians(float(coords_subj[0]))+radius/R)
+		lon_min,lon_max = math.degrees(math.radians(float(coords_subj[1]))-math.asin(math.sin(radius/R)/math.cos(math.radians(float(coords_subj[0]))))),math.degrees(math.radians(float(coords_subj[1]))+math.asin(math.sin(radius/R)/math.cos(math.radians(float(coords_subj[0])))))
+		distance_census = str_census.dropna(subset=['Latitude','Longitude'])[(str_census.Latitude.between(lat_min,lat_max))&(str_census.Longitude.between(lon_min,lon_max))]
+		distance_census["Lat,Lon"] = list(zip(distance_census['Latitude'],distance_census['Longitude']))
+		distance_census ['distance'] = [geodesic(coords_subj,distance_census['Lat,Lon'].loc[distance_census.index == x]).miles for x in distance_census.index]
+		print(prop_name, prop_city, coords_subj)
+	return distance_census
+
+	radius = st.radio("Options", ('7mile search radius', 'Custom Slider','Manual Input'))  
+		
+	def sliders():
+		"""
+		Function that defines a slider. It's going to be
+		initiated with the default value as defined in SciPy.
+		Slider min value of 0.01; max value of 10 - are added
+		arbitrary.
+		"""
+
+		slider_i = st.slider('Default value: '+'{}'.format(param)+' = '+f'{parameter_value}',
+			   min_value = min_param_value,
+			   value = float("{:.2f}".format(parameter_value)),
+			   max_value = 1000.00,
+			   step = step_value)
+
+		return slider_i
+
+	    # Doing try and except which will allow slider stepping
+	    # interval to be changed in the advanced mode.
+	    try:
+		if radius == 'Custom Slider':
+		    step_value = 0.10
+		    slider_i = sliders()
+		    sliders_params.append(slider_i)
+
+		if radius == 'Manually Input':
+		    manual = float(st.text_input('Default value: '+'{}'.format(param)+' = '+f'{parameter_value}', float("{:.2f}".format(parameter_value))))
+		    sliders_params.append(manual)
+	    except:
+		step_value = 0.10
+		slider_i = sliders()  
+		sliders_params.append(slider_i)
+	comps_button = st.sidebar.button('Pull Hotel Comps')
+	
+	
 			
 
 
