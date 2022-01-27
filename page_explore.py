@@ -32,8 +32,8 @@ def page_explore():
 
 
 		# Distribution names
-		hotel = st.sidebar.selectbox('Select Hotel',name_str['Property'])
-		st.sidebar.write(hotel, ' has the StarID of ',name_str[name_str.Property == hotel]['StarID'].item())
+		hotel = st.sidebar.selectbox('Select Hotel',name_str['Hotel Name'])
+		st.sidebar.write(hotel, ' has the StarID of ',name_str[name_str['Hotel Name'] == hotel]['STR Number'].item())
 		data = str_census
 		star = st.sidebar.text_input('Enter Star ID')
 		st.markdown("**Parameters**")
