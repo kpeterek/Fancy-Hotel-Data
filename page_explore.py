@@ -110,7 +110,7 @@ def page_explore():
 		rooms = values = st.slider('Select room range',1.0,1000.0,(50.0, 120.0))
 		st.write('Values:', values)
 		comp_data = nearby_comps_str(star)
-		st.dataframe(comp_data.loc[(comp_data['Rooms'].between(rooms))])
+		st.dataframe(comp_data.loc[(comp_data['Rooms'].between(rooms[0],rooms[1]))])
 			
 
 
