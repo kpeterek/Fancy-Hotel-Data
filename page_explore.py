@@ -44,7 +44,7 @@ def page_explore():
 	st.sidebar.subheader("To explore:")
 	#with make_expanders("Select Hotel"):
 
-	@st.cache(suppress_st_warning=True)
+	
 	hotel = st.sidebar.selectbox('Select Hotel',name_str['Hotel Name'])
 	st.sidebar.write(hotel, ' has the StarID of ',name_str[name_str['Hotel Name'] == hotel]['STR Number'].item())
 	star = st.sidebar.number_input(label='Enter Star ID',value=63037)
