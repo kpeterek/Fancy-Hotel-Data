@@ -107,7 +107,7 @@ def page_explore():
 	if radius_option == '7mile search radius':
 		radius = 7.0
 	if radius_option == 'Custom Slider':
-		radius = st.sidebar.slider('Select radius',0.0,6.0,(0.0,3.0))
+		radius = st.sidebar.slider('Select radius',0.0,6.0,(0.0,3.0))[1]
 	if radius_option == 'Manual Input':
 		radius = st.sidebar.number_intput(label='Enter Radius (MI): ',value=15.0)
 	rooms = st.sidebar.slider('Select room range',10,1000,(50, 120))
@@ -116,7 +116,7 @@ def page_explore():
 	if comps_button:
 		make_line()
 		st.markdown("**Operating Comps**")
-		comp_data = nearby_comps_str(star,radius=radius[1])
+		comp_data = nearby_comps_str(star,radius=radius)
 		st.dataframe(comp_data.loc[(comp_data['Rooms'].between(rooms[0],rooms[1]))])
 			
 
