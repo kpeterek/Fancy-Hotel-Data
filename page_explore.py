@@ -24,13 +24,15 @@ def page_explore():
 	str_census = pd.read_csv('str_census_small.csv')
 	str_pipeline = pd.read_csv('pipeline.csv')
 	name_str = str_census[['Hotel Name','STR Number']]
-    	def make_line():
-        """ Line divider between images. """
-            
+    	
+	def make_line():
+        	""" Line divider between images. """
+            	
         	line = st.markdown('<hr style="border:1px solid gray"> </hr>',
                 unsafe_allow_html=True)
 
         	return line  
+	
 	def make_expanders(expander_name, sidebar=True):
 		""" Set up expanders which contains a set of options. """
 		if sidebar:         
