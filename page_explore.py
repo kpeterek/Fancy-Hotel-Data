@@ -50,7 +50,7 @@ def page_explore():
 		distance_census["Lat,Lon"] = list(zip(distance_census['Latitude'],distance_census['Longitude']))
 		distance_census ['distance'] = [geodesic(coords_subj,distance_census['Lat,Lon'].loc[distance_census.index == x]).miles for x in distance_census.index]
 		print(prop_name, prop_city, coords_subj)
-	return distance_census
+		return distance_census
 
 	radius = st.radio("Options", ('7mile search radius', 'Custom Slider','Manual Input'))  
 		
