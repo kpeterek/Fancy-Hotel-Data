@@ -13,7 +13,7 @@ import more_itertools
 from itertools import permutations
 import math
 
-
+@st.cache()
 def page_explore():
 	""" 
 	The first page in this app made with Streamlit is for an interactive 
