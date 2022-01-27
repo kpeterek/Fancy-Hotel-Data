@@ -14,32 +14,21 @@ def page_introduction():
     
     st.markdown("<h2 style='text-align: center;'> Welcome To </h2>", 
                 unsafe_allow_html=True)
-    st.markdown("<h1 style='text-align: center;'> Distribution Analyser</h1>", 
+    st.markdown("<h1 style='text-align: center;'> Hotel Analyser</h1>", 
                 unsafe_allow_html=True)
      
 
     st.info("""
-            There are two main features: \n
-            - Explore distributions 
-            - Fit distributions  
+            There are three main features: \n
+            - Retrieving Comp Sets
+            - Pulling a geolocated New Supply
+            - Importing STR Data  
             $←$ To start playing with the app, select an option on the 
             left sidebar.
             """)
-    st.info("""
-            - Here is a youtube link to the [Distribution Analyser walkthrough](https://www.youtube.com/watch?v=6S0b7gFY36I&t=3s).
-            - App snippets and brief descriptions ⮧
-            """)
 
 
-    image1 = "https://raw.githubusercontent.com/rdzudzar/DistributionAnalyser/main/images/Dist1.png?token=AIAWV2ZQOGWADUFWZM3ZWBLAN3CD6"
-    image2 = "https://raw.githubusercontent.com/rdzudzar/DistributionAnalyser/main/images/Dist2.png?token=AIAWV27IFN4ZLN3EAONHMVLAN3BNS"
-    image3 = "https://raw.githubusercontent.com/rdzudzar/DistributionAnalyser/main/images/Dist3.png?token=AIAWV25DCGRPJRFLDPQIWN3AN3BPA"
-    image4 = "https://raw.githubusercontent.com/rdzudzar/DistributionAnalyser/main/images/Fit1.png?token=AIAWV2ZVPX4HJL77ZQRTIBDAN3BQK"
-    image5 = "https://raw.githubusercontent.com/rdzudzar/DistributionAnalyser/main/images/Fit2.png?token=AIAWV27QFQIAEOQSRDQVC3DAN3BRQ"
-    image6 = "https://raw.githubusercontent.com/rdzudzar/DistributionAnalyser/main/images/Fit3.png?token=AIAWV265V2EQ24SLCTLEHOTAN3BSQ"
-
-
-    
+   
     def make_line():
         """ Line divider between images. """
             
@@ -48,14 +37,14 @@ def page_introduction():
 
         return line    
 
-
+"""
     # Images and brief explanations.
     st.error('Explore distributions')
     feature1, feature2 = st.columns([0.5,0.4])
     with feature1:
-        st.image(image1, use_column_width=True)
+        #st.image(image1, use_column_width=True)
     with feature2:
-        st.warning('Select Distribution')
+        st.warning('Search for Hotel')
         st.info("""
                 - Select distribution from Dropdown Menu (or type its name)
                 - Change distribution parameters on sliders and see the change. 
@@ -131,28 +120,6 @@ def page_introduction():
     
     st.info('There are 100 continuous distribution functions  \
                 from **SciPy v1.6.1** available to play with.')
-        
-    st.markdown("""
-                
-                - Abriviations:
-                
-                    - PDF - Probability Density Function
-                
-                    - CDF - Cumulative Density Function
-                
-                    - SF - Survival Function
-                
-                    - P(X<=x) - Probability of obtaining a value smaller than 
-                                x for selected x.
-                
-                    - Empirical quantiles for a data array: 
-                        Q1, Q2, Q3 respectively 0.25, 0.50, 0.75
-                              
-                    - $\sigma$ (Standard Deviation). On plot shades: 
-                        mean$\pm x\sigma$
-                        
-                    - SSE - Sum of squared estimate of errors
-                
-                """)
+"""        
     
     return
