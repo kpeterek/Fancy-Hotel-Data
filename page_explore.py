@@ -33,10 +33,10 @@ def page_explore():
 
 	hotel = st.sidebar.selectbox('Select Hotel',name_str['Hotel Name'])
 	st.sidebar.write(hotel, ' has the StarID of ',name_str[name_str['Hotel Name'] == hotel]['STR Number'].item())
-	st.markdown("**Parameters**")
+	star = st.text_input('Enter Hotel Star')
+	st.markdown("**Parameters**")	
 	submit = st.sidebar.button('Pull Hotel Information')
 	if submit:
-		star = name_str[name_str['Hotel Name'] == hotel]['STR Number'].item()
 		data = str_census[str_census['STR Number'] == int(star)].T
 		st.dataframe(data)
 			
