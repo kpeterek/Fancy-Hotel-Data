@@ -17,6 +17,7 @@ def page_explore():
     cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','Latitude','Longitude','distance']
     str_census = pd.read_csv('str_census_small.csv')
     str_pipeline = pd.read_csv('pipeline.csv')
+    name_str = pd.DataFrame(str_census[['Hotel Name','STR Number']])
     
     def make_expanders(expander_name, sidebar=True):
         """ Set up expanders which contains a set of options. """
@@ -32,7 +33,7 @@ def page_explore():
 
         # Distribution names
         hotel = st.sidebar.selectbox('Select Hotel',name_str['Property'])
-	st.sidebar.warning(hotel, ' has the StarID of ',name_str[name_str.Property == hotel]['StarID'].item())
+	st.sidebar.write(hotel, ' has the StarID of ',name_str[name_str.Property == hotel]['StarID'].item())
 	data = str_census
 	star = st.sidebar.text_input('Enter Star ID')
 	st.markdown("**Parameters**")
@@ -43,12 +44,7 @@ def page_explore():
 	else:
 		radius = 0.0
 	submit = st.sidebar.button('run new supply')
-	if submit:
-		data = dd.newsupply(float(star),float(radius),st_filter)
-		st.write(data.dropna())
-		data.rename(columns = {'Latitude':'lat','Longitude':'lon'},inplace=True)
-		data.dropna(inplace=True)
-		st.map(data)
-
+	
+	
 
         
