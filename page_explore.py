@@ -107,7 +107,8 @@ def page_explore():
 	if comps_button:
 		make_line()
 		st.markdown("**Operating Comps**")
-		rooms = st.select_slider(label = 'Rooms Range',value=(10,1000))
+		rooms = values = st.slider('Select room range',1.0,1000.0,(50.0, 120.0))
+		st.write('Values:', values)
 		comp_data = nearby_comps_str(star)
 		st.dataframe(comp_data.loc[(comp_data['Rooms'].between(rooms))])
 			
