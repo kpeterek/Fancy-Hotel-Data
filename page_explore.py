@@ -33,17 +33,14 @@ def page_explore():
 
 		# Distribution names
 		hotel = st.sidebar.selectbox('Select Hotel',name_str['Hotel Name'])
+		star = int(name_str[name_str['Hotel Name'] == hotel]['STR Number'].item())
 		st.sidebar.write(hotel, ' has the StarID of ',name_str[name_str['Hotel Name'] == hotel]['STR Number'].item())
-		data = str_census
-		star = st.sidebar.text_input('Enter Star ID')
+		data = str_census[str_census['STR Number'] == star]
 		st.markdown("**Parameters**")
-		st_filter = st.sidebar.selectbox('Filter by?', ['radius','tract','city'])
-		radius = st.sidebar.text_input('Radius?')
-		if radius.isnumeric():
-			pass
-		else:
-			radius = 0.0
-			submit = st.sidebar.button('run new supply')
+		submit = st.sidebar.button('Pull Hotel Information')
+		if submit:
+			st.write(data)
+			
 
 
 
