@@ -104,8 +104,9 @@ def page_explore():
 				sliders_params.append(slider_i)
 			return sliders_params
 	sliders_params = obtain_functional_data()
+	rooms = st.sidebar.slider('Select room range',10,1000,(50, 120))
 	comps_button = st.sidebar.button('Pull Hotel Comps')
-	rooms = st.sidebar.slider('Select room range',1.0,1000.0,(50.0, 120.0))
+	
 	if comps_button:
 		make_line()
 		st.markdown("**Operating Comps**")
