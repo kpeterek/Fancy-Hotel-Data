@@ -109,7 +109,7 @@ def page_explore():
 		st.markdown("**Operating Comps**")
 		rooms = st.select_slider(label = 'Rooms Range',value=[10,1000])
 		comp_data = nearby_comps_str(star)
-		st.dataframe(comp_data.loc[(comp_data['Rooms'].between(rooms)])
+		st.dataframe(comp_data.loc[(comp_data['Rooms'].between(rooms))])
 			
 
 
