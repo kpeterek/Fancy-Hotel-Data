@@ -54,7 +54,7 @@ def page_explore():
 	st.dataframe(data)
 	radius = st.sidebar.radio("Options", ('7mile search radius', 'Custom Slider','Manual Input')) 
 	
-	@st.cache(suppress_st_warning=True)
+
 	def nearby_comps_str(STR,radius=7):
 		R = 3958.756
 		prop_name = str_census['Hotel Name'][str_census['STR Number'] == STR].iloc[:,].item()
@@ -105,11 +105,10 @@ def page_explore():
 			return sliders_params
 	sliders_params = obtain_functional_data()
 	comps_button = st.sidebar.button('Pull Hotel Comps')
+	rooms = st.sidebar.slider('Select room range',1.0,1000.0,(50.0, 120.0))
 	if comps_button:
 		make_line()
 		st.markdown("**Operating Comps**")
-		rooms = values = st.slider('Select room range',1.0,1000.0,(50.0, 120.0))
-		st.write('Values:', values)
 		comp_data = nearby_comps_str(star)
 		st.dataframe(comp_data.loc[(comp_data['Rooms'].between(rooms[0],rooms[1]))])
 			
