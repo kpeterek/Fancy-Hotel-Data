@@ -103,7 +103,8 @@ def page_explore():
 				)
 			)
 
-		st.table(fig)
+	with row1_2:
+		st.write(fig.T)
 	coords = list(data.T[['Latitude','Longitude']].values.flatten())
 	m = folium.Map(location=coords, zoom_start=16)
 	tooltip = data.T['Hotel Name'].values[0]
