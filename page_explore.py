@@ -12,6 +12,8 @@ import re
 import more_itertools
 from itertools import permutations
 import math
+from streamlit_folium import folium_static
+import folium
 
 
 def page_explore():
@@ -52,6 +54,9 @@ def page_explore():
 	submit = st.sidebar.button('Pull Hotel Information')
 	data = str_census[str_census['STR Number'] == int(star)]
 	st.dataframe(data)
+	tooltip = data['Hotel Name'].item()
+	folium.Marker(data[['Lat','Lon']], tooltip=tooltip).add_to(m)
+	folium_static(m)
 	radius_option = st.sidebar.radio("Options", ('7mile search radius', 'Custom Slider','Manual Input')) 
 	
 
