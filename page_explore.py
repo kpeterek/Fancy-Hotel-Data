@@ -60,7 +60,7 @@ def page_explore():
     		header=dict(values=list(data[cols_needed].columns),
                 	fill_color='paleturquoise',
                 	align='left'),
-    	cells=dict(values=[data['Hotel Name'],data['Chain Scale'], data['Rooms'],data['Open Date'],data['MSA'],data['Total Meeting Space'],data['Restaurant (Y/N)']],
+    	cells=dict(values=data.transpose().values.tolist()],
                fill_color='lavender',
                align='left'))
 	])
