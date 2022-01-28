@@ -165,7 +165,17 @@ def page_explore():
 		make_line()
 		st.markdown("**Operating Comps**")
 		comp_data = nearby_comps_str(star,radius=radius)
-		st.dataframe(comp_data.loc[(comp_data['Rooms'].between(rooms[0],rooms[1]))])
+		fig = go.Figure(data=[go.Table(
+		    header=dict(values=cols_needed,
+				fill_color='paleturquoise',
+				align='left'),
+		    cells=dict(values=comp_data[cols_needed].transpose().values.tolist(),
+			       fill_color='lavender',
+			       align='left'))
+		])
+
+		fig.show()
+		st.plotly_chart(fig)
 		
 			
 
