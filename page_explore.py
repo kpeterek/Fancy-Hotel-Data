@@ -31,7 +31,7 @@ def page_explore():
 	name_str = str_census[['Hotel Name','STR Number']]
     	
 	
-	row_1_1,row_2_1 = st.columns([4,1])
+	row_1_1,row_2_1 = st.columns([1,4])
 	def map(data, lat, lon, zoom):
 		st.write(pdk.Deck(
 		map_style="mapbox://styles/mapbox/light-v9",
