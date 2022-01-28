@@ -58,7 +58,7 @@ def page_explore():
 	#tooltip = data['Hotel Name'].values[0]
 	#folium.Marker(data[['Latitude','Longitude']].get_values()[0], tooltip=tooltip).add_to(m)
 	#folium_static(m)
-	st.write(data[['Latitude','Longitude']].values[:])
+	st.write(data[['Latitude','Longitude']].values[:].tolist())
 	radius_option = st.sidebar.radio("Options", ('7mile search radius', 'Custom Slider','Manual Input')) 
 	
 
