@@ -104,7 +104,7 @@ def page_explore():
 				)
 			)
 '''
-	with row_2_1 :
+	with row_2_1:
 		coords = list(data[['Latitude','Longitude']].values.flatten())
 		m = folium.Map(location=coords, zoom_start=16)
 		tooltip = data['Hotel Name'].values[0]
