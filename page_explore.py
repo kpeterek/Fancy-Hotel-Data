@@ -84,7 +84,7 @@ def page_explore():
 		submit = st.sidebar.button('Pull Hotel Information')
 		data = str_census[str_census['STR Number'] == int(star)]
 		st.write(data[cols_needed].transpose().values.flatten().tolist())
-
+'''
 		fig = go.Figure(data=[go.Table(
 			header=dict(values=cols_needed,
 				fill_color='paleturquoise',
@@ -103,11 +103,11 @@ def page_explore():
 				t=0
 				)
 			)
-
+'''
 	with row_2_1 :
-		coords = list(data.T[['Latitude','Longitude']].values.flatten())
+		coords = list(data[['Latitude','Longitude']].values.flatten())
 		m = folium.Map(location=coords, zoom_start=16)
-		tooltip = data.T['Hotel Name'].values[0]
+		tooltip = data['Hotel Name'].values[0]
 		folium.Marker(coords, tooltip=tooltip).add_to(m)
 		folium_static(m)
 		#st.write(list(data[['Latitude','Longitude']].values.flatten()))
