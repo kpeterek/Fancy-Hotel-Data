@@ -83,7 +83,7 @@ def page_explore():
 		st.markdown("**Subject Property**")	
 		submit = st.sidebar.button('Pull Hotel Information')
 		data = str_census[str_census['STR Number'] == int(star)]
-		st.write(data[cols_needed].T)
+		st.write(data.T[cols_needed].transpose().values.flatten().tolist())
 
 		fig = go.Figure(data=[go.Table(
 			header=dict(values=cols_needed,
