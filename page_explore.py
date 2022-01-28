@@ -104,7 +104,7 @@ def page_explore():
 			)
 
 		st.plotly_chart(fig)
-	coords = list(data[['Latitude','Longitude']].values.flatten())
+	coords = list(data.T[['Latitude','Longitude']].values.flatten())
 	m = folium.Map(location=coords, zoom_start=16)
 	tooltip = data['Hotel Name'].values[0]
 	folium.Marker(coords, tooltip=tooltip).add_to(m)
