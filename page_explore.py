@@ -96,15 +96,15 @@ def page_explore():
 
 		fig.show()
 		st.plotly_chart(fig)
-	st.sidebar.write(data)
-	with row_2_1:
-		coords = list(data[['Latitude','Longitude']].values.flatten())
-		m = folium.Map(location=coords, zoom_start=16)
-		tooltip = data['Hotel Name'].values[0]
-		folium.Marker(coords, tooltip=tooltip).add_to(m)
-		folium_static(m)
-		#st.write(list(data[['Latitude','Longitude']].values.flatten()))
-		radius_option = st.sidebar.radio("Options", ('7mile search radius', 'Custom Slider','Manual Input')) 
+
+
+	coords = list(data[['Latitude','Longitude']].values.flatten())
+	m = folium.Map(location=coords, zoom_start=16)
+	tooltip = data['Hotel Name'].values[0]
+	folium.Marker(coords, tooltip=tooltip).add_to(m)
+	folium_static(m)
+	#st.write(list(data[['Latitude','Longitude']].values.flatten()))
+	radius_option = st.sidebar.radio("Options", ('7mile search radius', 'Custom Slider','Manual Input')) 
 	
 
 	def nearby_comps_str(STR,radius=7):
