@@ -66,7 +66,7 @@ def page_explore():
 	])
 	fig.update_layout(
 		width=1400,
-		height=1200,
+		height=100,
 		margin=dict(
 			l=0,
 			r=0,
