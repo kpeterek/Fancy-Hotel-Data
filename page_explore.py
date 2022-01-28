@@ -23,7 +23,6 @@ def page_explore():
 	The first page in this app made with Streamlit is for an interactive 
 	exploration of the continuous distributions that are available in SciPy.
 	"""
-	st.set_page_config(layout="wide")
 	cols_needed = ['Hotel Name','Chain Scale','Rooms','Open Date','MSA','Total Meeting Space','Restaurant (Y/N)']
 	cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','Latitude','Longitude','distance']
 	str_census = pd.read_csv('str_census_small.csv')
