@@ -54,8 +54,9 @@ def page_explore():
 	submit = st.sidebar.button('Pull Hotel Information')
 	data = str_census[str_census['STR Number'] == int(star)]
 	st.dataframe(data)
-	tooltip = data['Hotel Name'].item()
-	folium.Marker(data[['Lat','Lon']].values.to_list(), tooltip=tooltip).add_to(m)
+	m = folium.Map(location=[39.949610, -75.150282], zoom_start=16)
+	tooltip = data['Hotel Name']..get_values()[0]
+	folium.Marker(data[['Lat','Lon']]..get_values()[0], tooltip=tooltip).add_to(m)
 	folium_static(m)
 	radius_option = st.sidebar.radio("Options", ('7mile search radius', 'Custom Slider','Manual Input')) 
 	
