@@ -60,7 +60,7 @@ def page_explore():
     		header=dict(values=list(data[cols_needed].columns),
                 	fill_color='paleturquoise',
                 	align='left'),
-    	cells=dict(values=data.transpose().values.tolist()],
+    	cells=dict(values=data[cols_needed].transpose().values.tolist()],
                fill_color='lavender',
                align='left'))
 	])
