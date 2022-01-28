@@ -12,7 +12,7 @@ np.random.seed(1)
 
 
 # Set the default elements on the sidebar
-st.set_page_config(page_title='HotelAnalyzer')
+st.set_page_config(page_title='HotelAnalyzer',layout="wide")
 
 logo, name = st.sidebar.columns(2)
 with logo:
