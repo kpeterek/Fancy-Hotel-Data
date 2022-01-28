@@ -82,7 +82,8 @@ def page_explore():
 	with row_1_1:
 		st.markdown("**Subject Property**")	
 		submit = st.sidebar.button('Pull Hotel Information')
-		data = str_census[str_census['STR Number'] == int(star)].transpose()
+		data = str_census[str_census['STR Number'] == int(star)]
+		st.write(data[cols_needed].T)
 
 		fig = go.Figure(data=[go.Table(
 			header=dict(values=cols_needed,
@@ -104,14 +105,13 @@ def page_explore():
 			)
 
 	with row_2_1 :
-		st.write(data.T[cols_needed].T)
-	coords = list(data.T[['Latitude','Longitude']].values.flatten())
-	m = folium.Map(location=coords, zoom_start=16)
-	tooltip = data.T['Hotel Name'].values[0]
-	folium.Marker(coords, tooltip=tooltip).add_to(m)
-	folium_static(m)
-	#st.write(list(data[['Latitude','Longitude']].values.flatten()))
-	radius_option = st.sidebar.radio("Options", ('7mile search radius', 'Custom Slider','Manual Input')) 
+		coords = list(data.T[['Latitude','Longitude']].values.flatten())
+		m = folium.Map(location=coords, zoom_start=16)
+		tooltip = data.T['Hotel Name'].values[0]
+		folium.Marker(coords, tooltip=tooltip).add_to(m)
+		folium_static(m)
+		#st.write(list(data[['Latitude','Longitude']].values.flatten()))
+		radius_option = st.sidebar.radio("Options", ('7mile search radius', 'Custom Slider','Manual Input')) 
 	
 
 	def nearby_comps_str(STR,radius=7):
