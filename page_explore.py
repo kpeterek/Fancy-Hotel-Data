@@ -103,7 +103,7 @@ def page_explore():
 				)
 			)
 
-	with row1_2:
+	with row_2_1 :
 		st.write(fig.T)
 	coords = list(data.T[['Latitude','Longitude']].values.flatten())
 	m = folium.Map(location=coords, zoom_start=16)
