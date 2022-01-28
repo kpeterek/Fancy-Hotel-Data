@@ -64,6 +64,16 @@ def page_explore():
                fill_color='lavender',
                align='left'))
 	])
+	fig.update_layout(
+		width=1400,
+		height=separation,
+		margin=dict(
+			l=0,
+			r=0,
+			b=0,
+			t=0
+			)
+		)
 
 	st.plotly_chart(fig)
 	coords = list(data[['Latitude','Longitude']].values.flatten())
