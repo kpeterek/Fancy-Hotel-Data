@@ -179,9 +179,11 @@ def page_explore():
 		
 		coords_comps = list(comp_data[['Latitude','Longitude']].values.flatten())
 		m = folium.Map(location=coords_comps, zoom_start=16)
-		tooltip = comp_data['Hotel Name'].values.flatten()
-		folium.Marker(coords, tooltip=tooltip).add_to(m)
+		for point in range(0, len(coords_comps)):
+    			folium.Marker(coords_comps[point], popup=comp_data['Hotel Name'][point]).add_to(map)
 		folium_static(m)
+
+		
 		
 			
 
