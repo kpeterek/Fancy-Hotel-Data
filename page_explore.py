@@ -57,7 +57,7 @@ def page_explore():
 	data = str_census[str_census['STR Number'] == int(star)]
 	
 	fig = go.Figure(data=[go.Table(
-    		header=dict(values=list(data.columns),
+    		header=dict(values=list(data[cols_needed].columns),
                 	fill_color='paleturquoise',
                 	align='left'),
     	cells=dict(values=[data['Hotel Name'],data['Chain Scale'], data['Rooms'],data['Open Date'],data['MSA'],data['Total Meeting Space'],data['Restaurant (Y/N)']],
