@@ -79,11 +79,13 @@ def page_explore():
 	hotel = st.sidebar.selectbox('Select Hotel',name_str['Hotel Name'])
 	st.sidebar.write(hotel, ' has the StarID of ',name_str[name_str['Hotel Name'] == hotel]['STR Number'].item())
 	star = st.sidebar.number_input(label='Enter Star ID',value=63037)
+	
+	
 	with row_1_1:
 		st.markdown("**Subject Property**")	
 		submit = st.sidebar.button('Pull Hotel Information')
 		data = str_census[str_census['STR Number'] == int(star)]
-		st.plotly_chart(data.transpose())
+		st.write(data[cols_needed].T)
 
 	with row_2_1:
 		coords = list(data[['Latitude','Longitude']].values.flatten())
@@ -158,6 +160,7 @@ def page_explore():
 		st.markdown("**Operating Comps**")
 		comp_data = nearby_comps_str(star,radius=radius)
 		st.dataframe(comp_data.loc[(comp_data['Rooms'].between(rooms[0],rooms[1]))])
+		
 			
 
 
