@@ -55,7 +55,7 @@ def page_explore():
 	data = str_census[str_census['STR Number'] == int(star)]
 	st.dataframe(data)
 	coords = list(data[['Latitude','Longitude']].values.flatten())
-	m = folium.Map(location=[39.949610, -75.150282], zoom_start=16)
+	m = folium.Map(location=coords, zoom_start=16)
 	tooltip = data['Hotel Name'].values[0]
 	folium.Marker(coords, tooltip=tooltip).add_to(m)
 	folium_static(m)
