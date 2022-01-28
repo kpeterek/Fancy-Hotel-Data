@@ -85,10 +85,10 @@ def page_explore():
 		data = str_census[str_census['STR Number'] == int(star)].transpose()
 
 		fig = go.Figure(data=[go.Table(
-			header=dict(values=list(data[cols_needed].rows),
+			header=dict(values=cols_needed),
 				fill_color='paleturquoise',
 				align='left'),
-		cells=dict(values=data[cols_needed].transpose().values.tolist(),
+		cells=dict(values=data.T[cols_needed].transpose().values.tolist(),
 		       fill_color='lavender',
 		       align='left'))
 		])
