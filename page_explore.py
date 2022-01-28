@@ -79,21 +79,22 @@ def page_explore():
 	hotel = st.sidebar.selectbox('Select Hotel',name_str['Hotel Name'])
 	st.sidebar.write(hotel, ' has the StarID of ',name_str[name_str['Hotel Name'] == hotel]['STR Number'].item())
 	star = st.sidebar.number_input(label='Enter Star ID',value=63037)
-	fig = go.Figure(data=[go.Table(
-	    header=dict(values=cols_needed,
-			fill_color='paleturquoise',
-			align='left'),
-	    cells=dict(values=data[cols_needed].transpose().values.tolist(),
-		       fill_color='lavender',
-		       align='left'))
-	])
-
-	fig.show()
+	
 	
 	with row_1_1:
 		st.markdown("**Subject Property**")	
 		submit = st.sidebar.button('Pull Hotel Information')
 		data = str_census[str_census['STR Number'] == int(star)]
+		fig = go.Figure(data=[go.Table(
+		    header=dict(values=cols_needed,
+				fill_color='paleturquoise',
+				align='left'),
+		    cells=dict(values=data[cols_needed].transpose().values.tolist(),
+			       fill_color='lavender',
+			       align='left'))
+		])
+
+		fig.show()
 		st.plotly_chart(fig)
 
 	with row_2_1:
