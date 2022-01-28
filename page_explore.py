@@ -65,7 +65,7 @@ def page_explore():
                align='left'))
 	])
 
-	st.write(fig)
+	st.plotly_chart(fig)
 	coords = list(data[['Latitude','Longitude']].values.flatten())
 	m = folium.Map(location=coords, zoom_start=16)
 	tooltip = data['Hotel Name'].values[0]
