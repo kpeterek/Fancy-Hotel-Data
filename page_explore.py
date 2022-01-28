@@ -14,6 +14,7 @@ from itertools import permutations
 import math
 from streamlit_folium import folium_static
 import folium
+import plotly.graph_objects as go
 
 
 def page_explore():
@@ -54,7 +55,17 @@ def page_explore():
 	st.markdown("**Subject Property**")	
 	submit = st.sidebar.button('Pull Hotel Information')
 	data = str_census[str_census['STR Number'] == int(star)]
-	st.write(data[cols_needed])
+	
+	fig = go.Figure(data=[go.Table(
+    		header=dict(values=list(data.columns),
+                	fill_color='paleturquoise',
+                	align='left'),
+    	cells=dict(values=[data['Hotel Name'],data['Chain Scale'], data['Rooms'],data['Open Date'],data['MSA'],data['Total Meeting Space'],data['Restaurant (Y/N)']],
+               fill_color='lavender',
+               align='left'))
+	])
+
+fig.show()
 	coords = list(data[['Latitude','Longitude']].values.flatten())
 	m = folium.Map(location=coords, zoom_start=16)
 	tooltip = data['Hotel Name'].values[0]
