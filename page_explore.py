@@ -88,7 +88,7 @@ def page_explore():
 			header=dict(values=cols_needed,
 				fill_color='paleturquoise',
 				align='left'),
-		cells=dict(values=data.T[cols_needed].transpose().values.tolist()[0],
+		cells=dict(values=data.T[cols_needed].transpose().values.flatten().tolist(),
 		       fill_color='lavender',
 		       align='left'))
 		])
