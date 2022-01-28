@@ -15,6 +15,7 @@ import math
 from streamlit_folium import folium_static
 import folium
 import plotly.graph_objects as go
+import pydeck as pdk
 
 
 def page_explore():
@@ -29,6 +30,32 @@ def page_explore():
 	str_pipeline = pd.read_csv('pipeline.csv')
 	name_str = str_census[['Hotel Name','STR Number']]
     	
+	
+	row_1_1, row_2_1 = st.columns((2,2))
+	def map(data, lat, lon, zoom):
+		st.write(pdk.Deck(
+		map_style="mapbox://styles/mapbox/light-v9",
+		initial_view_state={
+		    "latitude": lat,
+		    "longitude": lon,
+		    "zoom": zoom,
+		    "pitch": 50,
+		},
+		layers=[
+		    pdk.Layer(
+			"HexagonLayer",
+			data=data,
+			get_position=["lon", "lat"],
+			radius=100,
+			elevation_scale=4,
+			elevation_range=[0, 1000],
+			pickable=True,
+			extruded=True,
+		    ),
+		]
+		))
+	
+	
 	def make_line():
         	""" Line divider between images. """
             	
@@ -47,35 +74,36 @@ def page_explore():
 
 	st.sidebar.subheader("To explore:")
 	#with make_expanders("Select Hotel"):
-
+	
 	
 	hotel = st.sidebar.selectbox('Select Hotel',name_str['Hotel Name'])
 	st.sidebar.write(hotel, ' has the StarID of ',name_str[name_str['Hotel Name'] == hotel]['STR Number'].item())
 	star = st.sidebar.number_input(label='Enter Star ID',value=63037)
-	st.markdown("**Subject Property**")	
-	submit = st.sidebar.button('Pull Hotel Information')
-	data = str_census[str_census['STR Number'] == int(star)]
-	
-	fig = go.Figure(data=[go.Table(
-    		header=dict(values=list(data[cols_needed].columns),
-                	fill_color='paleturquoise',
-                	align='left'),
-    	cells=dict(values=data[cols_needed].transpose().values.tolist(),
-               fill_color='lavender',
-               align='left'))
-	])
-	fig.update_layout(
-		width=1400,
-		height=100,
-		margin=dict(
-			l=0,
-			r=0,
-			b=0,
-			t=0
-			)
-		)
+	with row_1_1:
+		st.markdown("**Subject Property**")	
+		submit = st.sidebar.button('Pull Hotel Information')
+		data = str_census[str_census['STR Number'] == int(star)].transpose()
 
-	st.plotly_chart(fig)
+		fig = go.Figure(data=[go.Table(
+			header=dict(values=list(data[cols_needed].rows),
+				fill_color='paleturquoise',
+				align='left'),
+		cells=dict(values=data[cols_needed].transpose().values.tolist(),
+		       fill_color='lavender',
+		       align='left'))
+		])
+		fig.update_layout(
+			width=1400,
+			height=100,
+			margin=dict(
+				l=0,
+				r=0,
+				b=0,
+				t=0
+				)
+			)
+
+		st.plotly_chart(fig)
 	coords = list(data[['Latitude','Longitude']].values.flatten())
 	m = folium.Map(location=coords, zoom_start=16)
 	tooltip = data['Hotel Name'].values[0]
