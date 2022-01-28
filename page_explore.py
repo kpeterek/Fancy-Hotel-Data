@@ -21,7 +21,7 @@ def page_explore():
 	The first page in this app made with Streamlit is for an interactive 
 	exploration of the continuous distributions that are available in SciPy.
 	"""
-	cols_needed = ['Title','Address','City','State','PostalCode','Units','Open Date','Phase','Latitude','Longitude','distance','sort']
+	cols_needed = ['Hotel Name','Chain Scale','Rooms','Open Date','MSA','Total Meeting Space','Restaurant (Y/N)']
 	cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','Latitude','Longitude','distance']
 	str_census = pd.read_csv('str_census_small.csv')
 	str_pipeline = pd.read_csv('pipeline.csv')
@@ -53,7 +53,7 @@ def page_explore():
 	st.markdown("**Subject Property**")	
 	submit = st.sidebar.button('Pull Hotel Information')
 	data = str_census[str_census['STR Number'] == int(star)]
-	st.dataframe(data)
+	st.write(data[cols_needed])
 	coords = list(data[['Latitude','Longitude']].values.flatten())
 	m = folium.Map(location=coords, zoom_start=16)
 	tooltip = data['Hotel Name'].values[0]
