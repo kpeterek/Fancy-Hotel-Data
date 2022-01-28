@@ -24,7 +24,7 @@ def page_explore():
 	cols_needed = ['Hotel Name','Chain Scale','Rooms','Open Date','MSA','Total Meeting Space','Restaurant (Y/N)']
 	cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','Latitude','Longitude','distance']
 	str_census = pd.read_csv('str_census_small.csv')
-	str_census['Open Date'] = str_census['Open Date'].astype(int).astype(str)
+	str_census['Open Date'] = str_census['Open Date'].astype('Int64').astype(str)
 	str_pipeline = pd.read_csv('pipeline.csv')
 	name_str = str_census[['Hotel Name','STR Number']]
     	
