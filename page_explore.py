@@ -31,7 +31,6 @@ def page_explore():
 	name_str = str_census[['Hotel Name','STR Number']]
     	
 	
-	row_1_1,row_2_1 = st.columns([1,4])
 	def map(data, lat, lon, zoom):
 		st.write(pdk.Deck(
 		map_style="mapbox://styles/mapbox/light-v9",
@@ -79,23 +78,20 @@ def page_explore():
 	hotel = st.sidebar.selectbox('Select Hotel',name_str['Hotel Name'])
 	st.sidebar.write(hotel, ' has the StarID of ',name_str[name_str['Hotel Name'] == hotel]['STR Number'].item())
 	star = st.sidebar.number_input(label='Enter Star ID',value=63037)
-	
-	
-	with row_1_1:
-		st.markdown("**Subject Property**")	
-		submit = st.sidebar.button('Pull Hotel Information')
-		data = str_census[str_census['STR Number'] == int(star)]
-		fig = go.Figure(data=[go.Table(
-		    header=dict(values=cols_needed,
-				fill_color='paleturquoise',
-				align='left'),
-		    cells=dict(values=data[cols_needed].transpose().values.tolist(),
-			       fill_color='lavender',
-			       align='left'))
-		])
+	st.markdown("**Subject Property**")	
+	submit = st.sidebar.button('Pull Hotel Information')
+	data = str_census[str_census['STR Number'] == int(star)]
+	fig = go.Figure(data=[go.Table(
+	    header=dict(values=cols_needed,
+			fill_color='paleturquoise',
+			align='left'),
+	    cells=dict(values=data[cols_needed].transpose().values.tolist(),
+		       fill_color='lavender',
+		       align='left'))
+	])
 
-		fig.show()
-		st.plotly_chart(fig)
+	fig.show()
+	st.plotly_chart(fig)
 
 
 	coords = list(data[['Latitude','Longitude']].values.flatten())
