@@ -83,7 +83,7 @@ def page_explore():
 		st.markdown("**Subject Property**")	
 		submit = st.sidebar.button('Pull Hotel Information')
 		data = str_census[str_census['STR Number'] == int(star)]
-		st.Table(pd.DataFrame(list(zip(data[cols_needed].columns.tolist(),data[cols_needed].values.flatten().tolist()))))
+		st.Table(data)
 
 	with row_2_1:
 		coords = list(data[['Latitude','Longitude']].values.flatten())
