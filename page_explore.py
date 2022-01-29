@@ -94,10 +94,10 @@ def page_explore():
 	st.plotly_chart(fig)
 
 
-	coords = list(data[['Latitude','Longitude']].values.flatten())
-	m = folium.Map(location=coords, zoom_start=16)
+	sub_coords = list(data[['Latitude','Longitude']].values.flatten())
+	m = folium.Map(location=sub_coords, zoom_start=16)
 	tooltip = data['Hotel Name'].values[0]
-	folium.Marker(coords, tooltip=tooltip).add_to(m)
+	folium.Marker(sub_coords, tooltip=tooltip).add_to(m)
 	folium_static(m)
 	#st.write(list(data[['Latitude','Longitude']].values.flatten()))
 	radius_option = st.sidebar.radio("Options", ('7mile search radius', 'Custom Slider','Manual Input')) 
@@ -178,9 +178,10 @@ def page_explore():
 		st.plotly_chart(fig)
 		
 		coords_comps = comp_data[['Latitude','Longitude']].values.tolist()
+		map = folium.Map(location=, zoom_start=30)
 		for point in range(0, len(coords_comps)):
     			folium.Marker(coords_comps[point], popup=comp_data['Hotel Name'][point]).add_to(map)
-		folium_static(m)
+		folium_static(map)
 
 		
 		
