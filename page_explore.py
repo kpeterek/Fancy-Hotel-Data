@@ -177,8 +177,7 @@ def page_explore():
 		fig.show()
 		st.plotly_chart(fig)
 		
-		coords_comps = list(comp_data[['Latitude','Longitude']].values.flatten())
-		m = folium.Map(location=coords_comps, zoom_start=16)
+		coords_comps = comp_data[['Latitude','Longitude']].values.tolist()
 		for point in range(0, len(coords_comps)):
     			folium.Marker(coords_comps[point], popup=comp_data['Hotel Name'][point]).add_to(map)
 		folium_static(m)
