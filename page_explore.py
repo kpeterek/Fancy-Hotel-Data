@@ -178,10 +178,8 @@ def page_explore():
 		st.plotly_chart(fig)
 		
 		coords_comps = comp_data[['Latitude','Longitude']].values.tolist()
-		map = folium.Map(location=sub_coords, zoom_start=10)
 		for point in range(0, len(coords_comps)):
-    			folium.Marker(coords_comps[point], popup=comp_data['Hotel Name'].iloc[point]).add_to(map)
-		folium_static(map)
+    			folium.Marker(coords_comps[point], popup=comp_data['Hotel Name'].iloc[point]).add_to(m)
 
 		
 		
