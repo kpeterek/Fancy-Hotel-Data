@@ -80,26 +80,27 @@ def page_explore():
 	star = st.sidebar.number_input(label='Enter Star ID',value=63037)
 	st.markdown("**Subject Property**")	
 	submit = st.sidebar.button('Pull Hotel Information')
-	data = str_census[str_census['STR Number'] == int(star)]
-	fig = go.Figure(data=[go.Table(
-	    header=dict(values=cols_needed,
-			fill_color='paleturquoise',
-			align='left'),
-	    cells=dict(values=data[cols_needed].transpose().values.tolist(),
-		       fill_color='lavender',
-		       align='left'))
-	])
+	if submit:
+		data = str_census[str_census['STR Number'] == int(star)]
+		fig = go.Figure(data=[go.Table(
+		    header=dict(values=cols_needed,
+				fill_color='paleturquoise',
+				align='left'),
+		    cells=dict(values=data[cols_needed].transpose().values.tolist(),
+			       fill_color='lavender',
+			       align='left'))
+		])
 
-	fig.show()
-	st.plotly_chart(fig)
+		fig.show()
+		st.plotly_chart(fig)
 
 
-	sub_coords = list(data[['Latitude','Longitude']].values.flatten())
-	m = folium.Map(location=sub_coords, zoom_start=16)
-	tooltip = data['Hotel Name'].values[0]
-	folium.Marker(sub_coords, tooltip=tooltip).add_to(m)
-	folium_static(m)
-	#st.write(list(data[['Latitude','Longitude']].values.flatten()))
+		sub_coords = list(data[['Latitude','Longitude']].values.flatten())
+		m = folium.Map(location=sub_coords, zoom_start=16)
+		tooltip = data['Hotel Name'].values[0]
+		folium.Marker(sub_coords, tooltip=tooltip).add_to(m)
+		folium_static(m)
+		#st.write(list(data[['Latitude','Longitude']].values.flatten()))
 	radius_option = st.sidebar.radio("Options", ('7mile search radius', 'Custom Slider','Manual Input')) 
 	
 
@@ -162,9 +163,27 @@ def page_explore():
 	comps_button = st.sidebar.button('Pull Hotel Comps')
 	
 	if comps_button:
+		data = str_census[str_census['STR Number'] == int(star)]
+		fig = go.Figure(data=[go.Table(
+		    header=dict(values=cols_needed,
+				fill_color='paleturquoise',
+				align='left'),
+		    cells=dict(values=data[cols_needed].transpose().values.tolist(),
+			       fill_color='lavender',
+			       align='left'))
+		])
+
+		fig.show()
+		st.plotly_chart(fig)
+		sub_coords = list(data[['Latitude','Longitude']].values.flatten())
+		comp_data = nearby_comps_str(star,radius=radius)
+		coords_comps = comp_data[['Latitude','Longitude']].values.tolist()
+		for point in range(0, len(coords_comps)):
+    			folium.Marker(coords_comps[point], popup=comp_data['Hotel Name'].iloc[point]).add_to(m)
+		folium_static(m)
 		make_line()
 		st.markdown("**Operating Comps**")
-		comp_data = nearby_comps_str(star,radius=radius)
+		
 		fig = go.Figure(data=[go.Table(
 		    header=dict(values=cols_needed,
 				fill_color='paleturquoise',
@@ -177,9 +196,8 @@ def page_explore():
 		fig.show()
 		st.plotly_chart(fig)
 		
-		coords_comps = comp_data[['Latitude','Longitude']].values.tolist()
-		for point in range(0, len(coords_comps)):
-    			folium.Marker(coords_comps[point], popup=comp_data['Hotel Name'].iloc[point]).add_to(m)
+		
+		
 
 		
 		
