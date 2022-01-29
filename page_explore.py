@@ -180,7 +180,7 @@ def page_explore():
 		coords_comps = comp_data[['Latitude','Longitude']].values.tolist()
 		m = folium.Map(location=sub_coords, zoom_start=15)
 		for point in range(0, len(coords_comps)):
-    			folium.Marker(coords_comps[point], popup=comp_data[cols_needed].iloc[point].values.tolist()).add_to(m)
+    			folium.Marker(coords_comps[point], popup=list(zip(cols_needed,comp_data[cols_needed].iloc[point].values.tolist())).add_to(m)
 		folium_static(m)
 		make_line()
 		st.markdown("**Operating Comps**")
